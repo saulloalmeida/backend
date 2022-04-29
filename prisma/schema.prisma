@@ -15,12 +15,12 @@ datasource db {
 }
 
 model TipoProfissional {
-  id           Int           @id @default(autoincrement())
+  id           Int            @id @default(autoincrement())
   descricao    String
-  situacao     Boolean       @default(true)
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  profissional Profissional?
+  situacao     Boolean        @default(true)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  profissional Profissional[]
 }
 
 model Profissional {
@@ -32,6 +32,6 @@ model Profissional {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  tipoProfissional   TipoProfissional @relation(fields: [tipoProfissionalId], references: [id])
-  tipoProfissionalId Int              @unique
+  tipoProfissional   TipoProfissional? @relation(fields: [tipoProfissionalId], references: [id])
+  tipoProfissionalId Int?
 }

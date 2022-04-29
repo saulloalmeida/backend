@@ -15,6 +15,16 @@ export default {
         descricao: descricao,
       }
     })
-    return res.json({ message: 'Tipo de Profissional criado com sucesso' })
+    return res.json({ message: 'Profissão criada com sucesso' })
+  },
+  async delete(req: Request, res: Response) {
+    const { id } = req.params
+    const deletedItem = await prisma.tipoProfissional.delete({
+      where: {
+        id: Number(id)
+      }
+    })
+    return res.json({ message: 'Profissão deletada com sucesso' })
   }
+
 }

@@ -20,7 +20,10 @@ export default {
   async findAll(req: Request, res: Response) {
     const profissionais = await prisma.profissional.findMany({
       select: {
+        id: true,
         nome: true,
+        email: true,
+        createdAt: true,
         tipoProfissional: {
           select: {
             descricao: true
@@ -29,6 +32,14 @@ export default {
       }
     })
     return res.json(profissionais)
+  },
+  async delete(req: Request, res: Response) {
+    const { id } = req.params
+    await prisma.profissional.delete({
+      where: {
+        id: Number(id)
+      }
+    })
+    return res.json({ message: 'Profissional deletado com sucesso' })
   }
-
 }
