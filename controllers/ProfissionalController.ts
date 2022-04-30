@@ -41,5 +41,9 @@ export default {
       }
     })
     return res.json({ message: 'Profissional deletado com sucesso' })
+  },
+  async totalDeProfissionais(req: Request, res: Response) {
+    const total = await prisma.profissional.count()
+    return res.json({ total })
   }
 }
