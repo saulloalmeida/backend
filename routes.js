@@ -1,6 +1,6 @@
-import { Router } from "express";
-import ProfissionalController from "./controllers/ProfissionalController";
-import TipoProfissionalController from "./controllers/TipoProfissionalController";
+const { Router } = require("express");
+const ProfissionalController = require("./controllers/ProfissionalController");
+const TipoProfissionalController = require("./controllers/TipoProfissionalController");
 
 const router = Router()
 
@@ -16,9 +16,5 @@ router.get('/profissoes/total', TipoProfissionalController.totalDeProfissoes)
 router.post('/profissao', TipoProfissionalController.create)
 router.delete('/profissao/:id', TipoProfissionalController.delete)
 
-router.get('/', (req, res) => {
-  res.send('API funcionando')
-})
-
-export { router };
+module.exports = router;
 
