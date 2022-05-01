@@ -1,18 +1,18 @@
 generator client {
-  provider = "prisma-client-js"
-  // previewFeatures = ["referentialIntegrity"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
 }
 
 // datasource db {
-//   provider             = "mysql"
-//   url                  = env("DATABASE_URL")
-//   referentialIntegrity = "prisma"
+//   provider = "sqlite"
+//   url      = "file:./dev.db"
 // }
-
-datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
-}
 
 model TipoProfissional {
   id           Int            @id @default(autoincrement())
@@ -34,4 +34,6 @@ model Profissional {
 
   tipoProfissional   TipoProfissional? @relation(fields: [tipoProfissionalId], references: [id])
   tipoProfissionalId Int?
+
+  @@index([tipoProfissionalId])
 }
