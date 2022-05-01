@@ -16,6 +16,9 @@ router.get('/profissoes/total', TipoProfissionalController.totalDeProfissoes)
 router.post('/profissao', TipoProfissionalController.create)
 router.delete('/profissao/:id', TipoProfissionalController.delete)
 
+router.get('/', (req, res) => {
+  res.send('API funcionando')
+})
 
 export { router };
 
